@@ -2,16 +2,16 @@ package db
 
 import "time"
 
-type PICTURE struct {
+type Game struct {
 	Id          int64     `gorm:"id" json:"id"`
-	CreatedTime time.Time `gorm:"created_time" json:"createdTime"`
-	UpdatedTime time.Time `gorm:"updated_time" json:"updatedTime"`
-	Type        string    `gorm:"type" json:"type"`
-	Url         string    `gorm:"url" json:"url"`
-	Status      string    `gorm:"status" json:"status"`
-	Deleted     int64     `gorm:"deleted" json:"deleted"`
+	CreatedTime time.Time `gorm:"column:created_time" json:"createdTime"`
+	UpdatedTime time.Time `gorm:"column:updated_time" json:"updatedTime"`
+	Delete      int       `gorm:"delete" json:"delete"`
+	Name        string    `gorm:"column:name" json:"name"`
+	Logo        string    `gorm:"column:logo" json:"logo"`
 }
 
-func (PICTURE) TableName() string {
-	return "PICTURE"
+// 制定数据库名
+func (Game) TableName() string {
+	return "game"
 }

@@ -3,8 +3,13 @@ database:
   driverName: mysql
   host: localhost
   port: "3306"
-  databaseName: pool
+  databaseName: goWeb
   username: root
   password: root
   charset: utf8mb4
   loc: Asia/Shanghai
+
+server:
+  port: "8090"
+  pem: "/etc/*******/fullchain.pem"
+  key: "/etc/*******/privkey.pem"

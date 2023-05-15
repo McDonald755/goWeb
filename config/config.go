@@ -16,6 +16,13 @@ import (
 var (
 	APPVIPER *viper.Viper
 	DB       *gorm.DB
+
+	// https配置
+	PEM string
+	KEY string
+
+	// 端口号
+	PORT string
 )
 
 func init() {
@@ -40,7 +47,10 @@ func initAppConfig() *viper.Viper {
 		initDB(appViper)
 	})
 	//初始化
+	PORT = ":" + appViper.GetString("server.port")
 	initDB(appViper)
+	// https 配置
+	//initSSL(appViper)
 	return appViper
 }
 
@@ -79,4 +89,12 @@ func initDB(viper *viper.Viper) {
 //gorm 打印sql回调方法
 func callback(option *gorm.DB) {
 	log.Infoln(option.Statement.SQL.String())
+}
+
+// 获取https配置
+func initSSL(viper *viper.Viper) {
+	pem := viper.GetString("server.pem")
+	key := viper.GetString("server.key")
+	PEM = pem
+	KEY = key
 }
