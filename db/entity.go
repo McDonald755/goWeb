@@ -11,7 +11,7 @@ type Game struct {
 	Logo        string    `gorm:"column:logo" json:"logo"`
 }
 
-// 制定数据库名
+// 指定数据库名
 func (Game) TableName() string {
 	return "game"
 }

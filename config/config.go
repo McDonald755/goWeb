@@ -11,6 +11,7 @@ import (
 	"net/url"
 	"os"
 	"path"
+	"time"
 )
 
 var (
@@ -21,8 +22,10 @@ var (
 	PEM string
 	KEY string
 
-	// 端口号
-	PORT string
+	// server
+	PORT         string
+	ReadTimeout  time.Duration
+	WriteTimeout time.Duration
 )
 
 func init() {
@@ -47,11 +50,21 @@ func initAppConfig() *viper.Viper {
 		initDB(appViper)
 	})
 	//初始化
-	PORT = ":" + appViper.GetString("server.port")
+
 	initDB(appViper)
+	initServer(appViper)
+	initSSL(appViper)
+	return appViper
+}
+
+func initServer(appViper *viper.Viper) {
+
+	PORT = ":" + appViper.GetString("server.port")
 	// https 配置
 	//initSSL(appViper)
-	return appViper
+
+	ReadTimeout = time.Duration(appViper.GetInt64("server.readTimeout"))
+	ReadTimeout = time.Duration(appViper.GetInt64("server.writeTimeout"))
 }
 
 func initDB(viper *viper.Viper) {

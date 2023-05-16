@@ -11,5 +11,7 @@ database:
 
 server:
   port: "8090"
+  readTimeout: 60
+  writeTimeout: 60
   pem: "/etc/*******/fullchain.pem"
   key: "/etc/*******/privkey.pem"
