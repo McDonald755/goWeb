@@ -2,19 +2,19 @@ package service
 
 import "goWeb/db"
 
-func InsertGame() {
-	db.InsertGame()
+func SaveOrUpdateGame(game db.Game) (error, int64) {
+	//todo 结构体转换
+	return db.SaveOrUpdateGame(game)
 }
 
-func DeleteGame() {
-	db.DeleteGame()
+func DeleteGame(id string) error {
+	return db.DeleteGame(id)
 }
-func UpdateGame() {
-	db.UpdateGame()
+
+func GetGames(game db.Game) *[]db.Game {
+	//todo 结构体转换
+	return db.GetGames(game)
 }
-func GetGames() {
-	db.GetGames()
-}
-func GetGameDetail() {
-	db.GetGameDetail()
+func GetGameDetail(id string) *db.Game {
+	return db.GetGameDetail(id)
 }
