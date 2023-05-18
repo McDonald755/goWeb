@@ -16,7 +16,7 @@ import (
 //	c.JSON(http.StatusOK, utils.GetResponseVo(config.SUCCESS, config.GetMsg(config.SUCCESS), result))
 //}
 
-func InsertGame(c *gin.Context) {
+func SaveOrUpdateGame(c *gin.Context) {
 
 	/*
 		获取参数
@@ -27,10 +27,6 @@ func InsertGame(c *gin.Context) {
 }
 
 func DeleteGame(c *gin.Context) {
-
-}
-
-func UpdateGame(c *gin.Context) {
 
 }
 

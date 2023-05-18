@@ -22,7 +22,7 @@ func UploadFile(c *gin.Context) {
 	filename := filepath.Base(file.Filename)
 	c.SaveUploadedFile(file, filename)
 
-	c.JSON(http.StatusOK, utils.GetResponseVo(config.UPLOADSUCCESS, config.GetMsg(config.UPLOADSUCCESS), filename))
+	c.JSON(http.StatusOK, utils.GetResponseVo(config.SUCCESS, config.GetMsg(config.SUCCESS), filename))
 
 }
 func UploadFiles(c *gin.Context) {
@@ -34,6 +34,6 @@ func UploadFiles(c *gin.Context) {
 		c.SaveUploadedFile(file, filename)
 	}
 
-	c.JSON(http.StatusOK, utils.GetResponseVo(config.UPLOADSUCCESS, config.GetMsg(config.UPLOADSUCCESS), nil))
+	c.JSON(http.StatusOK, utils.GetResponseVo(config.SUCCESS, config.GetMsg(config.SUCCESS), nil))
 
 }
