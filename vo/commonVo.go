@@ -1,8 +1,8 @@
 package vo
 
 type PageVo struct {
-	PageNum   int64 `json:"pageNum"`
-	PageSize  int64 `json:"pageSize"`
+	PageNum   int64 `json:"pageNum",binding:"gte=1"`
+	PageSize  int64 `json:"pageSize",binding:"lte=50"`
 	TotalSize int64 `json:"totalSize"`
 }
 

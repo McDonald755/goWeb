@@ -36,6 +36,8 @@ func commonRouter(r *gin.RouterGroup) {
 }
 
 func demo(r *gin.RouterGroup) {
-	r.POST("/getGameList", PostDemo)
-	r.GET("/getGameDetail", GetDemo)
+	r.POST("/saveOrUpdateGame", SaveOrUpdateGame)
+	r.GET("/deleteGame", DeleteGame)
+	r.GET("/getGameDetail", GetGameDetail)
+	r.POST("/getGames", GetGames)
 }

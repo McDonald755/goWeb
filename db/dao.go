@@ -16,7 +16,7 @@ func SaveOrUpdateGame(game Game) (error, int64) {
 	if result.RowsAffected == 0 {
 		game.CreatedTime = time.Now()
 		game.UpdatedTime = time.Now()
-
+		game.Delete = 0
 		if res := config.DB.Create(&game); res.Error != nil {
 			log.Error(res.Error)
 			return res.Error, -1
@@ -51,7 +51,7 @@ func DeleteGame(id string) error {
 	return nil
 }
 
-func GetGames(game Game) *[]Game {
+func GetGames(game Game, size int64, num int64) *[]Game {
 	var result []Game
 
 	sql := config.DB.Table("game").Where("deleted = 0")

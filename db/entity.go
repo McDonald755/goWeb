@@ -1,6 +1,9 @@
 package db
 
-import "time"
+import (
+	"goWeb/vo"
+	"time"
+)
 
 type Game struct {
 	Id          int64     `gorm:"id" json:"id"`
@@ -14,4 +17,8 @@ type Game struct {
 // 指定数据库名
 func (Game) TableName() string {
 	return "game"
+}
+
+func (game Game) ToVo() *vo.GameVo {
+	return &vo.GameVo{Name: game.Name, Logo: game.Logo, Id: game.Id}
 }

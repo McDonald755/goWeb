@@ -23,6 +23,7 @@ const (
 	ERROR_AUTH_TOKEN               = 10003
 	ERROR_AUTH                     = 10004
 	ERROR_UPLOAD_FAIL              = 10005
+	ERROR_DB                       = 10006
 )
 
 var MsgFlags = map[int]string{
@@ -34,6 +35,7 @@ var MsgFlags = map[int]string{
 	ERROR_AUTH_TOKEN:               "Token生成失败",
 	ERROR_AUTH:                     "Token错误",
 	ERROR_UPLOAD_FAIL:              "上传文件失败",
+	ERROR_DB:                       "数据库错误",
 }
 
 func GetMsg(code int) string {
