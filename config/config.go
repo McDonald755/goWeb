@@ -23,9 +23,16 @@ var (
 	KEY string
 
 	// server
+	ENV          string
 	PORT         string
 	ReadTimeout  time.Duration
 	WriteTimeout time.Duration
+
+	//文件相关
+	ImagePrefixUrl  string
+	ImageSavePath   string
+	ImageMaxSize    int64
+	ImageAllowExits string
 )
 
 func init() {
@@ -54,14 +61,14 @@ func initAppConfig() *viper.Viper {
 	initDB(appViper)
 	initServer(appViper)
 	initSSL(appViper)
+	initFile(appViper)
 	return appViper
 }
 
 func initServer(appViper *viper.Viper) {
 
 	PORT = ":" + appViper.GetString("server.port")
-	// https 配置
-	//initSSL(appViper)
+	ENV = appViper.GetString("server.env")
 
 	ReadTimeout = time.Duration(appViper.GetInt64("server.readTimeout"))
 	ReadTimeout = time.Duration(appViper.GetInt64("server.writeTimeout"))
@@ -97,6 +104,13 @@ func initDB(viper *viper.Viper) {
 	db.Callback().Delete().Register("deleteSql", callback)
 	db.Callback().Create().Register("createSql", callback)
 	DB = db
+}
+
+func initFile(viper *viper.Viper) {
+	ImagePrefixUrl = viper.GetString("imagePrefixUrl")
+	ImageSavePath = viper.GetString("imageSavePath")
+	ImageMaxSize = viper.GetInt64("imageMaxSize")
+	ImageAllowExits = viper.GetString("imageAllowExits")
 }
 
 //gorm 打印sql回调方法

@@ -24,11 +24,6 @@ import (
 
 func SaveOrUpdateGame(c *gin.Context) {
 
-	/*
-		获取参数
-		query 不带默认值
-		defaultQuery 带默认值
-	*/
 	validate := validator.New()
 	gameVo := vo.GameVo{}
 	//参数校验

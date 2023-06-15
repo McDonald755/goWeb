@@ -6,8 +6,7 @@ import (
 )
 
 func SaveOrUpdateGame(vo vo.GameVo) (error, int64) {
-
-	return db.SaveOrUpdateGame(*vo.ToEntity())
+	return db.SaveOrUpdateGame(*gameToEntity(vo))
 }
 
 func DeleteGame(id string) error {
@@ -16,10 +15,13 @@ func DeleteGame(id string) error {
 
 func GetGames(game vo.GameVo) *[]db.Game {
 	//结构体转换
-	entity := game.ToEntity()
-	return db.GetGames(*entity, game.PageSize, game.PageNum)
+	return db.GetGames(*gameToEntity(game), game.PageSize, game.PageNum)
 }
 
 func GetGameDetail(id string) *vo.GameVo {
 	return db.GetGameDetail(id).ToVo()
+}
+
+func gameToEntity(vo vo.GameVo) *db.Game {
+	return &db.Game{Id: vo.Id, Name: vo.Name, Logo: vo.Logo}
 }

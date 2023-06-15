@@ -4,6 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"goWeb/config"
 	"goWeb/middleware"
+	"goWeb/utils"
+	"net/http"
 )
 
 func APIRouter() *gin.Engine {
@@ -30,8 +32,10 @@ func CollectRoute(r *gin.Engine) {
 }
 
 func commonRouter(r *gin.RouterGroup) {
+	r.StaticFS("/upload/images", http.Dir(utils.GetImageFullPath()))
+
 	r.GET("/getTimeStamp", GetTimeStamp)
-	r.GET("/uploadFile", UploadFile)
+	r.GET("/uploadImage", UploadImage)
 	r.GET("/uploadFiles", UploadFiles)
 }
 

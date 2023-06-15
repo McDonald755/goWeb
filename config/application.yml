@@ -10,8 +10,17 @@ database:
   loc: Asia/Shanghai
 
 server:
+  env: "debug"
+  #env: "prod"
   port: "8090"
   readTimeout: 60
   writeTimeout: 60
   pem: "/etc/*******/fullchain.pem"
   key: "/etc/*******/privkey.pem"
+
+file:
+  imagePrefixUrl: "http://127.0.0.1:8000"
+  imageSavePath: "upload/images/"
+  # MB
+  imageMaxSize: 5
+  imageAllowExits: ".jpg,.jpeg,.png"
